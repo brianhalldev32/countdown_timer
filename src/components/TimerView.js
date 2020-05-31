@@ -1,45 +1,39 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Typography, IconButton, Grid } from '@material-ui/core';
-import PauseIcon from '@material-ui/icons/Pause';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 function formatTime(seconds) {
   if (seconds < 0) {
     return '';
   }
 
-  return `${Math.floor(seconds / 60)}:${seconds % 60}`;
+  let firstPart = Math.floor(seconds / 60);
+  let secondPart = seconds % 60;
+
+  firstPart = String(firstPart).length === 1 ? '0' + firstPart : firstPart;
+  secondPart = String(secondPart).length === 1 ? '0' + secondPart : secondPart;
+
+  return `${firstPart}:${secondPart}`;
 }
 
-function TimerView({ currentTime, initialTime, onPause, isPaused }) {
+function TimerView({ currentTime, initialTime, isPaused, isStarted }) {
   return (
-    <Grid container item xs={12} justify="center" alignItems="center">
-      <Grid item>
-        <Typography>
-          KKK
-          {currentTime < initialTime / 2 ? 'More than halfway there!' : ' '}
-        </Typography>
-      </Grid>
+    <Fragment>
+      <div className="countdown-timer__warning">
+        {isStarted && currentTime < initialTime / 2 && <span>More than halfway there!</span>}
+      </div>
 
-      <Grid item>
-        <Typography>{formatTime(currentTime)}</Typography>
-      </Grid>
-
-      <Grid item>
-        <IconButton variant="contained" color="primary" onClick={onPause}>
-          {isPaused ? <PlayArrowIcon /> : <PauseIcon />}
-        </IconButton>
-      </Grid>
-    </Grid>
+      <div className="countdown-timer__time">
+        <span>{formatTime(currentTime)}</span>
+      </div>
+    </Fragment>
   );
 }
 
 TimerView.propTypes = {
   currentTime: PropTypes.number.isRequired,
   initialTime: PropTypes.number.isRequired,
-  onPause: PropTypes.func.isRequired,
   isPaused: PropTypes.bool.isRequired,
+  isStarted: PropTypes.bool.isRequired,
 };
 
 export default TimerView;
