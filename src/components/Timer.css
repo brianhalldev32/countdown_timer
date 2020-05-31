@@ -1,7 +1,3 @@
-.countdown-timer {
-
-}
-
 .countdown-timer__input {
   height: 35px;
 }
@@ -13,9 +9,6 @@
   height: 20px;
   color: rgb(210, 105, 30);
   font-weight: bold;
-}
-
-.countdown-timer__warning span {
 }
 
 .countdown-timer__time {

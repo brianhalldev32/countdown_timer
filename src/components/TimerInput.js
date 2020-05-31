@@ -39,8 +39,8 @@ function TimerInput({ onChange, isReset, isStarted }) {
     if (
       !Number.isFinite(newTime) ||
       newTime < 0 ||
-      newTime > 99
-      // parseInt(newTime) !== newTime
+      newTime > 99 ||
+      parseInt(newTime) !== newTime
     ) {
       setError('Shoule be integers between 1 and 99');
       setTime(e.target.value);
