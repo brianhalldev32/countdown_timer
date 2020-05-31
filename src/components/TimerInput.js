@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
       padding: 0,
       fontSize: '20px',
     },
+    '& p': {
+      textAlign: 'center',
+    },
     color: '#fff',
   },
 }));
@@ -33,8 +36,13 @@ function TimerInput({ onChange, isReset, isStarted }) {
   const handleTimeInput = (e) => {
     const newTime = Number(e.target.value);
 
-    if (!Number.isFinite(newTime) || newTime < 0 || newTime > 99) {
-      setError('Valid range: [1 - 99]');
+    if (
+      !Number.isFinite(newTime) ||
+      newTime < 0 ||
+      newTime > 99
+      // parseInt(newTime) !== newTime
+    ) {
+      setError('Shoule be integers between 1 and 99');
       setTime(e.target.value);
     } else {
       setError(null);

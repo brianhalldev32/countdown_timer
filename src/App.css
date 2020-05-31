@@ -143,16 +143,6 @@
   font-weight: 300;
 }
 
-/* .face p {
-  border-radius: 20px;
-  font-size: 70px;
-  font-weight: 400;
-  position: absolute;
-  top: 17px;
-  width: 260px;
-  left: 20px;
-} */
-
 @keyframes spin1 {
   0% {
     transform: rotate(225deg);

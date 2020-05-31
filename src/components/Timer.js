@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import classNames from 'classnames';
-import { IconButton, ButtonBase } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
@@ -14,22 +13,8 @@ import { useInterval } from '../hooks';
 import './Timer.css';
 
 const useStyles = makeStyles((theme) => ({
-  input: {
-    '& input': {
-      color: '#fff',
-      borderBottom: '1px solid #fff',
-      textAlign: 'center',
-    },
-    color: '#fff',
-  },
   icon: {
     color: 'rgb(250, 235, 215)',
-  },
-  activeSpeed: {
-    color: 'rgb(95, 158, 160) !important',
-  },
-  otherSpeed: {
-    color: 'rgb(105, 105, 105) !important',
   },
 }));
 
@@ -91,7 +76,6 @@ function Timer() {
       <TimerView
         currentTime={currentTime}
         initialTime={initialTimeRef.current}
-        isPaused={timerState.isPaused}
         isStarted={timerState.isStarted}
       />
 

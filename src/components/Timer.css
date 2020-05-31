@@ -13,19 +13,19 @@
   height: 20px;
   color: rgb(210, 105, 30);
   font-weight: bold;
-  position: relative;
 }
 
 .countdown-timer__warning span {
-  position: absolute;
-  left: 20px;
-  top: 12px;
 }
 
 .countdown-timer__time {
   font-size: 75px;
   line-height: 75px;
   color: rgb(127, 255, 212);
+}
+
+.countdown-timer__time__under-twenty {
+  color: red;
 }
 
 .countdown-timer__speed {

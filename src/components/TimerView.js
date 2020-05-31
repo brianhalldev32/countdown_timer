@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 function formatTime(seconds) {
   if (seconds < 0) {
@@ -15,15 +16,25 @@ function formatTime(seconds) {
   return `${firstPart}:${secondPart}`;
 }
 
-function TimerView({ currentTime, initialTime, isPaused, isStarted }) {
+function TimerView({ currentTime, initialTime, isStarted }) {
   return (
     <Fragment>
       <div className="countdown-timer__warning">
-        {isStarted && currentTime < initialTime / 2 && <span>More than halfway there!</span>}
+        {isStarted && currentTime !== 0 && currentTime < initialTime / 2 && (
+          <span>More than halfway there!</span>
+        )}
+        {isStarted && currentTime === 0 && <span>Time's up!</span>}
       </div>
 
       <div className="countdown-timer__time">
-        <span>{formatTime(currentTime)}</span>
+        <span
+          className={classNames({
+            'countdown-timer__time__under-twenty':
+              isStarted && currentTime <= 20,
+          })}
+        >
+          {formatTime(currentTime)}
+        </span>
       </div>
     </Fragment>
   );
@@ -32,7 +43,6 @@ function TimerView({ currentTime, initialTime, isPaused, isStarted }) {
 TimerView.propTypes = {
   currentTime: PropTypes.number.isRequired,
   initialTime: PropTypes.number.isRequired,
-  isPaused: PropTypes.bool.isRequired,
   isStarted: PropTypes.bool.isRequired,
 };
 
