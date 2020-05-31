@@ -1,8 +1,25 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextField, Fab, Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-function TimerInput({ onStart, onChange }) {
+const useStyles = makeStyles((theme) => ({
+  input: {
+    '& input': {
+      color: 'rgb(255, 228, 196)',
+      borderBottom: '1px solid #fff',
+      textAlign: 'center',
+      fontWeight: 'bold',
+      padding: 0,
+      fontSize: '20px',
+    },
+    color: '#fff',
+  },
+}));
+
+function TimerInput({ onChange }) {
+  const classes = useStyles();
+
   const [time, setTime] = useState('');
   const [error, setError] = useState(null);
 
@@ -11,43 +28,29 @@ function TimerInput({ onStart, onChange }) {
     const newTime = Number(e.target.value);
 
     if (!Number.isFinite(newTime) || newTime < 0) {
-      setError('Time should be positive numbers');
+      setError('Please enter positive numbers only!');
+      setTime(e.target.value);
+      onChange(newTime * 60);
     } else {
       setError(null);
+      setTime(e.target.value);
     }
-
-    setTime(e.target.value);
-    // onChange(newTime * 60);
   };
 
   return (
-    <Fragment>
-      <TextField
-        type="number"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        label="Countdown"
-        error={!!error}
-        helperText={error}
-        value={time}
-        onChange={handleTimeInput}
-      />
-
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => onStart(time * 60)}
-        disabled={!!error}
-      >
-        Start
-      </Button>
-    </Fragment>
+    <TextField
+      type="number"
+      className={classes.input}
+      placeholder="(Min)"
+      error={!!error}
+      helperText={error}
+      value={time}
+      onChange={handleTimeInput}
+    />
   );
 }
 
 TimerInput.propTypes = {
-  onStart: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

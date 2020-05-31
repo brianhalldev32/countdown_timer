@@ -36,11 +36,7 @@ function Timer() {
   return (
     <div className="countdown-timer">
       <div className="countdown-timer__input">
-        <TextField
-          type="number"
-          className={classes.input}
-          placeholder="countdown: (min)"
-        />
+        <TimerInput />
       </div>
 
       <div className="countdown-timer__warning">

@@ -1,22 +1,10 @@
 import React, { useState, useRef } from 'react';
-import {
-  IconButton,
-  CardHeader,
-  Grid,
-  CardContent,
-  Card,
-  ButtonGroup,
-  Button,
-  Paper,
-  BottomNavigation,
-  BottomNavigationAction,
-} from '@material-ui/core';
 
 import Timer from './components/Timer';
+import { useInterval } from './hooks';
 
 import TimerInput from './components/TimerInput';
 import TimerView from './components/TimerView';
-import { useInterval } from './hooks';
 
 import './App.css';
 
