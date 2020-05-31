@@ -30,7 +30,9 @@ function TimerView({ currentTime, initialTime, isStarted }) {
         <span
           className={classNames({
             'countdown-timer__time__under-twenty':
-              isStarted && currentTime <= 20,
+              isStarted && currentTime <= 20 && currentTime > 10,
+            'countdown-timer__time__under-ten':
+              isStarted && currentTime <= 10 && currentTime > 0,
           })}
         >
           {formatTime(currentTime)}
