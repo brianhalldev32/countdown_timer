@@ -41,7 +41,7 @@ function Timer() {
   const [currentTime, setCurrentTime] = useState(0);
   const [timerState, setTimerState] = useState({
     isStarted: false,
-    isPaused: false,
+    isPaused: true,
     isReset: false,
   });
   const [speed, setSpeed] = useState(1000);
@@ -52,22 +52,30 @@ function Timer() {
     }
   }, speed);
 
-  const handleStart = () => {
-    setCurrentTime(initialTimeRef.current);
-    setTimerState({
-      isStarted: true,
-      isPaused: false,
-      isReset: false,
-    });
-
-    console.log('initialtime ref', initialTimeRef.current);
+  const handleStartAndPause = () => {
+    if (!timerState.isStarted) {
+      if (initialTimeRef.current > 0) {
+        setCurrentTime(initialTimeRef.current);
+        setTimerState({
+          isStarted: true,
+          isPaused: false,
+          isReset: false,
+        });
+      }
+    } else {
+      setTimerState({
+        ...timerState,
+        isPaused: !timerState.isPaused,
+      })
+    }
   };
 
   const handleReset = () => {
+    initialTimeRef.current = 0;
     setCurrentTime(0);
     setTimerState({
       isStarted: false,
-      isPaused: false,
+      isPaused: true,
       isReset: true,
     });
   };
@@ -88,8 +96,12 @@ function Timer() {
       />
 
       <div className="countdown-timer__action">
-        <IconButton aria-label="start" onClick={handleStart}>
-          <PlayArrowIcon className={classes.icon} />
+        <IconButton aria-label="start" onClick={handleStartAndPause}>
+          {timerState.isPaused ? (
+            <PlayArrowIcon className={classes.icon} />
+          ) : (
+            <PauseIcon className={classes.icon} />
+          )}
         </IconButton>
 
         <IconButton aria-label="reset" onClick={handleReset}>

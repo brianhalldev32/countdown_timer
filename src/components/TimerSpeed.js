@@ -33,6 +33,7 @@ function TimerSpeed({ speed, onChangeSpeed }) {
     <div className="countdown-timer__speed">
       {SPEED_OPTIONS.map((option) => (
         <ButtonBase
+          key={option.label}
           className={classNames({
             'countdown-timer__speed__item': true,
             [classes.activeSpeed]: speed === option.speed,

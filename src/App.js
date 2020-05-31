@@ -8,13 +8,13 @@ function App() {
   return (
     <div className="App">
       <div className="App-header">
-        <div class="timer-group">
-          <div class="timer minute" />
-          <div class="timer second">
-            <div class="hand"><span></span></div>
-            <div class="hand"><span></span></div>
+        <div className="timer-group">
+          <div className="timer minute" />
+          <div className="timer second">
+            <div className="hand"><span></span></div>
+            <div className="hand"><span></span></div>
           </div>
-          <div class="face">
+          <div className="face">
             <Timer />
           </div>
         </div>
