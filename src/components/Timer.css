@@ -1,0 +1,39 @@
+.countdown-timer {
+
+}
+
+.countdown-timer__warning {
+  font-size: 15px;
+  line-height: 15px;
+  padding: 5px;
+  height: 20px;
+  color: rgb(210, 105, 30);
+  font-weight: bold;
+  position: relative;
+}
+
+.countdown-timer__warning span {
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.countdown-timer__time {
+  font-size: 75px;
+  line-height: 75px;
+  color: rgb(127, 255, 212);
+}
+
+.countdown-timer__speed {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.countdown-timer__speed__item {
+  width: 35px;
+  height: 35px;
+  margin-right: 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
